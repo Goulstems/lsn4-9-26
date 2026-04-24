@@ -13,8 +13,13 @@ public class Account {
         balance = balance.add(amount);
     }
 
-    public void withdraw(BigDecimal amount) {
-        balance = balance.subtract(amount);
+    public void withdraw(BigDecimal amount) throws InsufficientFundsException {
+        BigDecimal difference = balance.subtract(amount);
+        if (difference.compareTo(BigDecimal.ZERO) < 0){
+            throw new InsufficientFundsException(difference.toString());
+        } else {
+            balance = balance.subtract(amount);
+        }
     }
 
     public BigDecimal getBalance() {

@@ -14,6 +14,11 @@ public class Main {
 
         Account acc2 = bank.getClientAccount(p1);
         System.out.println(p1.name + "'s balance: " + acc2.getBalance());
+        try {
+            acc2.withdraw(new BigDecimal(1000));
+        } catch (InsufficientFundsException e) {
+            System.err.println(e);
+        }
         uWonTheLottery(bank, p1);
     }
 
